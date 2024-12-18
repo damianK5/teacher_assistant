@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/scheduleFragment"
+        android:title="Plan"
+        android:icon="@drawable/baseline_calendar_month_24" />
+    <item
+        android:id="@+id/classesFragment"
+        android:title="Zajęcia"
+        android:icon="@drawable/baseline_ballot_24" />
+    <item
+        android:id="@+id/studentsFragment"
+        android:title="Studenci"
+        android:icon="@drawable/baseline_badge_24" />
+</menu>

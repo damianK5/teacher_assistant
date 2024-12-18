@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">teacher_assistant</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="student_information">Informacje o studencie</string>
+    <string name="firstName">Imię</string>
+    <string name="lastName">Nazwisko</string>
+    <string name="studentNumber">Numer legitymacji (nr albumu)</string>
+    <string name="add_student">Add student</string>
+    <string name="fullName">FullName</string>
+    <string name="pon">Pon</string>
+    <string name="wt">Wt</string>
+    <string name="sr">Śr</string>
+    <string name="czw">Czw</string>
+    <string name="pt">Pt</string>
+    <string name="add_hour">Dodaj godzinę</string>
+    <string name="start_hour">Godzina rozpoczęcia</string>
+    <string name="end_hour">Godzina zakończenia</string>
+</resources>

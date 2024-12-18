@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableRow xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/removeButton">
+
+    <TextView
+        android:id="@+id/hourTextView"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:gravity="center"
+        android:textColor="#000"
+        android:background="@drawable/cell_shape"
+        android:textSize="13sp" />
+
+    <TextView
+        android:id="@+id/ponTextView"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:gravity="center"
+        android:textColor="#000"
+        android:background="@drawable/cell_shape"
+        android:textSize="13sp" />
+
+
+    <TextView
+        android:id="@+id/wtTextView"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:gravity="center"
+        android:textColor="#000"
+        android:background="@drawable/cell_shape"
+        android:textSize="13sp" />
+
+    <TextView
+        android:id="@+id/srTextView"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:gravity="center"
+        android:textColor="#000"
+        android:background="@drawable/cell_shape"
+        android:textSize="13sp" />
+
+    <TextView
+        android:id="@+id/czwTextView"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:gravity="center"
+        android:textColor="#000"
+        android:background="@drawable/cell_shape"
+        android:textSize="13sp" />
+
+
+    <TextView
+        android:id="@+id/ptTextView"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:gravity="center"
+        android:textColor="#000"
+        android:background="@drawable/cell_shape"
+        android:textSize="13sp" />
+
+
+</TableRow>
