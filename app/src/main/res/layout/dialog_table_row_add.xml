@@ -10,7 +10,10 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="12dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
         android:orientation="horizontal">
 
         <TextView
@@ -21,20 +24,22 @@
             android:textSize="20sp"
             android:textColor="#000" />
 
-        <TextClock
+        <TextView
             android:id="@+id/start_hour"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:format24Hour="hh:mm"
-            android:format12Hour="@null"
-            android:textSize="20sp" />
+            android:text="@string/_00_00"
+            android:textSize="30sp"
+            android:textColor="#000" />
 
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="12dp"
+        android:layout_marginBottom="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
         android:orientation="horizontal">
 
         <TextView
@@ -45,13 +50,13 @@
             android:textSize="20sp"
             android:textColor="#000" />
 
-        <TextClock
+        <TextView
             android:id="@+id/end_hour"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:format24Hour="hh:mm"
-            android:format12Hour="@null"
-            android:textSize="20sp" />
+            android:text="@string/_00_00"
+            android:textSize="30sp"
+            android:textColor="#000" />
 
     </LinearLayout>
 
