@@ -10,6 +10,7 @@ import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
+import android.widget.Button
 import android.widget.EditText
 import android.widget.ListView
 import android.widget.TextView
@@ -18,22 +19,15 @@ import androidx.core.view.MenuProvider
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.Navigation
-import com.example.wydarzenieuczestnik.AppDatabase
+import com.example.teacher_assistant.database.Student
+import com.example.teacher_assistant.database.AppDatabase
 import kotlinx.coroutines.launch
 
 class StudentsFragment : Fragment(R.layout.fragment_students) {
     private lateinit var students: List<Student>
-    private val adapter = ItemElementAdapter()
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-
-        }
-    }
 
     // list adapter
-    inner class ItemElementAdapter: BaseAdapter() {
+    private val adapter = object: BaseAdapter() {
         override fun getCount(): Int = students.size
 
         override fun getItem(index: Int): Any = students[index]
@@ -41,22 +35,51 @@ class StudentsFragment : Fragment(R.layout.fragment_students) {
         override fun getItemId(index: Int): Long = index.toLong()
 
         override fun getView(index: Int, convertView: View?, viewGroup: ViewGroup?): View {
-            val newConvertView = convertView ?: LayoutInflater.from(context).inflate(
+            val view = convertView ?: LayoutInflater.from(context).inflate(
                 R.layout.student_list_item, viewGroup, false
             )
             val item = getItem(index) as Student
 
-            newConvertView.findViewById<TextView>(R.id.listName).text = buildString {
+            view.findViewById<TextView>(R.id.listName).text = buildString {
                 append(item.firstName)
                 append(" ")
                 append(item.lastName)
             }
 
-            newConvertView.setOnClickListener {
-                Navigation.findNavController(newConvertView).navigate(R.id.navigateToStudentDetailedFragment)
+            view.setOnClickListener {
+                Navigation.findNavController(view).navigate(R.id.navigateToStudentDetailedFragment)
             }
 
-            return newConvertView
+            val buttonEdit = view.findViewById<Button>(R.id.btn_edit)
+            val buttonDelete = view.findViewById<Button>(R.id.btn_delete)
+
+            buttonEdit.setOnClickListener {
+                addStudent(true, item.idStudent, item.firstName, item.lastName, item.studentNumber)
+            }
+
+            buttonDelete.setOnClickListener {
+                val builder = AlertDialog.Builder(requireContext())
+
+                with(builder) {
+                    setTitle("Czy chcesz usunąć?")
+                    setPositiveButton("Tak") { _, _ ->
+                        lifecycleScope.launch {
+                            val db = AppDatabase.getInstance(requireContext())
+                            db.studentDao().delete(item)
+                            refreshList()
+                        }
+                        Toast.makeText(
+                            requireContext(),
+                            "Student usunięty",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
+                    setNegativeButton("Nie", null)
+                    show()
+                }
+            }
+
+            return view
         }
 
     }
@@ -72,64 +95,17 @@ class StudentsFragment : Fragment(R.layout.fragment_students) {
             val studentsListView = view.findViewById<ListView>(R.id.students_listview)
             studentsListView.adapter = adapter
 
-            // Add a MenuProvider for menu handling
+            // set the appbar
             requireActivity().addMenuProvider(object : MenuProvider {
                 override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
-                    // Inflate your menu resource
                     menuInflater.inflate(R.menu.appbar_students, menu)
                 }
 
+                // appbar buttons action
                 override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
-                    // Handle menu item clicks
                     return when (menuItem.itemId) {
                         R.id.action_student_add -> {
-                            val builder = AlertDialog.Builder(requireContext())
-                            val dialogLayout = layoutInflater.inflate(R.layout.dialog_student_add, null)
-
-                            val editTextFirstName = dialogLayout.findViewById<EditText>(R.id.editTextFirstName)
-                            val editTextLastName = dialogLayout.findViewById<EditText>(R.id.editTextLastName)
-                            val editTextStudentNumber = dialogLayout.findViewById<EditText>(R.id.editTextStudentNumber)
-
-                            with(builder) {
-                                setTitle("Podaj informacje o studencie")
-                                setPositiveButton("Dodaj") { _, _ ->
-
-                                    val firstName = editTextFirstName.text.toString()
-                                    val lastName = editTextLastName.text.toString()
-                                    val studentNumber = editTextStudentNumber.text.toString()
-
-                                    if (firstName.isNotBlank() && lastName.isNotBlank() && studentNumber.isNotBlank()) {
-                                        val student = Student(
-                                            idStudent = 0,
-                                            firstName = firstName,
-                                            lastName = lastName,
-                                            studentNumber = studentNumber
-                                        )
-
-                                        lifecycleScope.launch {
-                                            AppDatabase.getInstance(requireContext())
-                                                .studentDao()
-                                                .insert(student)
-                                            Toast.makeText(
-                                                requireContext(),
-                                                "Student zapisany",
-                                                Toast.LENGTH_SHORT
-                                            ).show()
-                                            students = AppDatabase.getInstance(requireContext())
-                                                .studentDao()
-                                                .getAll()
-                                            adapter.notifyDataSetChanged()
-                                        }
-                                    } else {
-                                        Toast.makeText(requireContext(), "Wypełnij wszystkie pola", Toast.LENGTH_SHORT).show()
-                                    }
-
-
-                                }
-                                setNegativeButton("Anuluj", null)
-                                setView(dialogLayout)
-                                show()
-                            }
+                            addStudent(false, null, null, null, null)
                             true
                         }
                         else -> false
@@ -137,19 +113,70 @@ class StudentsFragment : Fragment(R.layout.fragment_students) {
                 }
             }, viewLifecycleOwner, Lifecycle.State.RESUMED)
         }
-
-
     }
 
+    fun refreshList() {
+        lifecycleScope.launch {
+            students = AppDatabase.getInstance(requireContext())
+                .studentDao()
+                .getAll()
+            adapter.notifyDataSetChanged()
+        }
+    }
 
-    companion object {
+    fun addStudent(editMode: Boolean, studentId: Int?, fName: String?, lName: String?, num: String?) {
+        val builder = AlertDialog.Builder(requireContext())
+        val dialogLayout = layoutInflater.inflate(R.layout.dialog_student_add, null)
 
-        @JvmStatic
-        fun newInstance() =
-            StudentsFragment().apply {
-                arguments = Bundle().apply {
+        val editTextFirstName = dialogLayout.findViewById<EditText>(R.id.editTextFirstName)
+        val editTextLastName = dialogLayout.findViewById<EditText>(R.id.editTextLastName)
+        val editTextStudentNumber = dialogLayout.findViewById<EditText>(R.id.editTextStudentNumber)
 
+        if (editMode) {
+            editTextFirstName.setText(fName)
+            editTextLastName.setText(lName)
+            editTextStudentNumber.setText(num)
+        }
+
+        with(builder) {
+            setTitle("Podaj informacje o studencie")
+            setPositiveButton(if (editMode) "Edytuj" else "Dodaj") { _, _ ->
+
+                val firstName = editTextFirstName.text.toString()
+                val lastName = editTextLastName.text.toString()
+                val studentNumber = editTextStudentNumber.text.toString()
+
+                if (firstName.isNotBlank() && lastName.isNotBlank() && studentNumber.isNotBlank()) {
+                    val student = Student(
+                        idStudent = if (editMode) studentId!! else 0,
+                        firstName = firstName,
+                        lastName = lastName,
+                        studentNumber = studentNumber
+                    )
+
+                    lifecycleScope.launch {
+                        AppDatabase.getInstance(requireContext())
+                            .studentDao()
+                            .insert(student)
+                        Toast.makeText(
+                            requireContext(),
+                            "Student zapisany",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                        refreshList()
+                    }
+
+                } else {
+                    Toast.makeText(
+                        requireContext(),
+                        "Wypełnij wszystkie pola",
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
             }
+            setNegativeButton("Anuluj", null)
+            setView(dialogLayout)
+            show()
+        }
     }
 }

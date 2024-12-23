@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <TableRow xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="60dp">
 
     <TextView
         android:id="@+id/hourTextView"
         android:layout_width="0dp"
-        android:layout_height="60dp"
+        android:layout_height="match_parent"
         android:gravity="center"
         android:textColor="#000"
         android:background="@drawable/cell_shape"
@@ -15,7 +15,7 @@
     <TextView
         android:id="@+id/ponTextView"
         android:layout_width="0dp"
-        android:layout_height="60dp"
+        android:layout_height="match_parent"
         android:gravity="center"
         android:textColor="#000"
         android:background="@drawable/cell_shape"
@@ -25,7 +25,7 @@
     <TextView
         android:id="@+id/wtTextView"
         android:layout_width="0dp"
-        android:layout_height="60dp"
+        android:layout_height="match_parent"
         android:gravity="center"
         android:textColor="#000"
         android:background="@drawable/cell_shape"
@@ -34,7 +34,7 @@
     <TextView
         android:id="@+id/srTextView"
         android:layout_width="0dp"
-        android:layout_height="60dp"
+        android:layout_height="match_parent"
         android:gravity="center"
         android:textColor="#000"
         android:background="@drawable/cell_shape"
@@ -43,7 +43,7 @@
     <TextView
         android:id="@+id/czwTextView"
         android:layout_width="0dp"
-        android:layout_height="60dp"
+        android:layout_height="match_parent"
         android:gravity="center"
         android:textColor="#000"
         android:background="@drawable/cell_shape"
@@ -53,7 +53,7 @@
     <TextView
         android:id="@+id/ptTextView"
         android:layout_width="0dp"
-        android:layout_height="60dp"
+        android:layout_height="match_parent"
         android:gravity="center"
         android:textColor="#000"
         android:background="@drawable/cell_shape"

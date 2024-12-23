@@ -12,9 +12,9 @@
         tools:layout="@layout/fragment_schedule" />
     <fragment
         android:id="@+id/classesFragment"
-        android:name="com.example.teacher_assistant.ClassesFragment"
+        android:name="com.example.teacher_assistant.LessonsFragment"
         android:label="Lista zajęć"
-        tools:layout="@layout/fragment_classes" />
+        tools:layout="@layout/fragment_lessons" />
     <fragment
         android:id="@+id/studentsFragment"
         android:name="com.example.teacher_assistant.StudentsFragment"

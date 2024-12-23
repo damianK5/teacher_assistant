@@ -1,4 +1,4 @@
-package com.example.teacher_assistant
+package com.example.teacher_assistant.database
 
 import androidx.room.Dao
 import androidx.room.Delete

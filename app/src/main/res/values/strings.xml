@@ -7,7 +7,6 @@
     <string name="lastName">Nazwisko</string>
     <string name="studentNumber">Numer legitymacji (nr albumu)</string>
     <string name="add_student">Add student</string>
-    <string name="fullName">FullName</string>
     <string name="pon">Pon</string>
     <string name="wt">Wt</string>
     <string name="sr">Śr</string>
@@ -18,4 +17,16 @@
     <string name="end_hour">Godzina zakończenia</string>
     <string name="_00_00">00:00</string>
     <string name="del">Usuń</string>
+    <string name="name">Name</string>
+    <string name="edit">Edytuj</string>
+    <string name="delete">Usuń</string>
+    <string name="one">1</string>
+    <string name="add_lesson">Dodaj zajęcia</string>
+    <string-array name="days_array">
+        <item>Poniedziałek</item>
+        <item>Wtorek</item>
+        <item>Środa</item>
+        <item>Czwartek</item>
+        <item>Piątek</item>
+    </string-array>
 </resources>

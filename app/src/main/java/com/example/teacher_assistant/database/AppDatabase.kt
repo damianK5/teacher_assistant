@@ -1,18 +1,16 @@
-package com.example.wydarzenieuczestnik
+package com.example.teacher_assistant.database
 
 import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.example.teacher_assistant.Student
-import com.example.teacher_assistant.StudentDao
 
-@Database(entities = [Student::class /*, Wydarzenie::class, WydarzenieUczestnik::class */], version = 1)
+@Database(entities = [Student::class, Lesson::class, CustomTableRow::class], version = 5)
 abstract class AppDatabase : RoomDatabase() {
 
     abstract fun studentDao(): StudentDao
-    //abstract fun wydarzenieDao(): WydarzenieDao
-    //abstract fun wydarzenieUczestnikDao(): WydarzenieUczestnikDao
+    abstract fun lessonDao(): LessonDao
+    abstract fun customTableRowDao(): CustomTableRowDao
 
     companion object {
         @Volatile
