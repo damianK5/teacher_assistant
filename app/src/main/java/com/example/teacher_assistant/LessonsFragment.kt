@@ -96,32 +96,6 @@ class LessonsFragment : Fragment(R.layout.fragment_lessons) {
         val editTextGroupNumber = dialogLayout.findViewById<EditText>(R.id.editTextGroupNumber)
         val editTextRoomNumber = dialogLayout.findViewById<EditText>(R.id.editTextRoomNumber)
 
-        // Dropdown list of week days
-        val daysSpinner = dialogLayout.findViewById<Spinner>(R.id.days_spinner)
-        ArrayAdapter.createFromResource(
-            requireContext(),
-            R.array.days_array,
-            android.R.layout.simple_spinner_item
-        ).also { adapter ->
-            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-            daysSpinner.adapter = adapter
-        }
-        daysSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(
-                parent: AdapterView<*>,
-                view: View?,
-                position: Int,
-                id: Long
-            ) {
-                val selectedDay = parent.getItemAtPosition(position).toString()
-                Toast.makeText(requireContext(), "Selected: $selectedDay", Toast.LENGTH_SHORT)
-                    .show()
-            }
-            override fun onNothingSelected(parent: AdapterView<*>?) {
-                TODO("Not yet implemented")
-            }
-        }
-
         if (editMode) {
             //editTextGroupName.setText()
             //editTextGroupNumber.setText()

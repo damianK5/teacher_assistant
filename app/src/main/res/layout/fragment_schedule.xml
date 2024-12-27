@@ -5,13 +5,83 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <TableLayout
+        android:id="@+id/tableLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:stretchColumns="*"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="60dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="65dp"
+                android:background="@drawable/header_shape"
+                android:gravity="center"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="65dp"
+                android:background="@drawable/header_shape"
+                android:gravity="center"
+                android:text="@string/pon"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="65dp"
+                android:background="@drawable/header_shape"
+                android:gravity="center"
+                android:text="@string/wt"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="65dp"
+                android:background="@drawable/header_shape"
+                android:gravity="center"
+                android:text="@string/sr"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="65dp"
+                android:background="@drawable/header_shape"
+                android:gravity="center"
+                android:text="@string/czw"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="65dp"
+                android:background="@drawable/header_shape"
+                android:gravity="center"
+                android:text="@string/pt"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+        </TableRow>
+
+    </TableLayout>
+
     <ScrollView
         android:id="@+id/scrollview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tableLayout2"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintEnd_toEndOf="parent">
 
 
         <TableLayout
@@ -20,65 +90,6 @@
             android:layout_height="wrap_content"
             android:stretchColumns="*">
 
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="60dp">
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="65dp"
-                    android:background="@drawable/header_shape"
-                    android:gravity="center"
-                    android:textSize="16sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="65dp"
-                    android:background="@drawable/header_shape"
-                    android:gravity="center"
-                    android:text="@string/pon"
-                    android:textSize="16sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="65dp"
-                    android:background="@drawable/header_shape"
-                    android:gravity="center"
-                    android:text="@string/wt"
-                    android:textSize="16sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="65dp"
-                    android:background="@drawable/header_shape"
-                    android:gravity="center"
-                    android:text="@string/sr"
-                    android:textSize="16sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="65dp"
-                    android:background="@drawable/header_shape"
-                    android:gravity="center"
-                    android:text="@string/czw"
-                    android:textSize="16sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="65dp"
-                    android:background="@drawable/header_shape"
-                    android:gravity="center"
-                    android:text="@string/pt"
-                    android:textSize="16sp"
-                    android:textStyle="bold" />
-
-            </TableRow>
 
         </TableLayout>
 

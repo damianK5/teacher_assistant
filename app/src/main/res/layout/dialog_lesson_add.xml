@@ -56,12 +56,5 @@
             android:layout_height="wrap_content"
             android:inputType="text"/>
     </com.google.android.material.textfield.TextInputLayout>
-    
-    <Spinner
-        android:id="@+id/days_spinner"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:spinnerMode="dropdown" />
 
 </LinearLayout>

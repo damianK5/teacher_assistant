@@ -5,12 +5,20 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 
-@Database(entities = [Student::class, Lesson::class, CustomTableRow::class], version = 5)
+@Database(
+    entities = [
+        Student::class,
+        Lesson::class,
+        CustomTableRow::class,
+        LessonInSchedule::class],
+    version = 7)
+
 abstract class AppDatabase : RoomDatabase() {
 
     abstract fun studentDao(): StudentDao
     abstract fun lessonDao(): LessonDao
     abstract fun customTableRowDao(): CustomTableRowDao
+    abstract fun lessonInScheduleDao(): LessonInScheduleDao
 
     companion object {
         @Volatile
