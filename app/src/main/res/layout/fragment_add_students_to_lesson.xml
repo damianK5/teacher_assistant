@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".AddStudentsToLessonFragment">
+
+    <Button
+        android:id="@+id/button_save_students_to_lesson"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Zapisz zmiany"/>
+
+    <ListView
+        android:id="@+id/add_students_to_lesson_listview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+</LinearLayout>

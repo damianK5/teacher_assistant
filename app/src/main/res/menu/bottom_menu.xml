@@ -6,7 +6,7 @@
         android:title="Plan"
         android:icon="@drawable/baseline_calendar_month_24" />
     <item
-        android:id="@+id/classesFragment"
+        android:id="@+id/lessonsFragment"
         android:title="Zajęcia"
         android:icon="@drawable/baseline_ballot_24" />
     <item

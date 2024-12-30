@@ -1,8 +1,8 @@
 plugins {
     alias(libs.plugins.android.application)
     id("org.jetbrains.kotlin.android")
-
     id("com.google.devtools.ksp")
+    id("androidx.navigation.safeargs.kotlin")
 }
 
 android {
@@ -49,6 +49,7 @@ dependencies {
     implementation(libs.androidx.constraintlayout)
     implementation(libs.androidx.navigation.fragment.ktx)
     implementation(libs.androidx.navigation.ui.ktx)
+    implementation(libs.support.annotations)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -82,4 +83,14 @@ dependencies {
 
     // optional - Paging 3 Integration
     implementation("androidx.room:room-paging:$room_version")
+}
+
+buildscript {
+    repositories {
+        google()
+    }
+    dependencies {
+        val nav_version = "2.8.5"
+        classpath("androidx.navigation:navigation-safe-args-gradle-plugin:$nav_version")
+    }
 }

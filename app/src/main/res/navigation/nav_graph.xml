@@ -11,10 +11,14 @@
         android:label="Plan zajęć"
         tools:layout="@layout/fragment_schedule" />
     <fragment
-        android:id="@+id/classesFragment"
+        android:id="@+id/lessonsFragment"
         android:name="com.example.teacher_assistant.LessonsFragment"
         android:label="Lista zajęć"
-        tools:layout="@layout/fragment_lessons" />
+        tools:layout="@layout/fragment_lessons" >
+        <action
+            android:id="@+id/navigateToLessonDetailedFragment"
+            app:destination="@id/lessonDetailedFragment" />
+    </fragment>
     <fragment
         android:id="@+id/studentsFragment"
         android:name="com.example.teacher_assistant.StudentsFragment"
@@ -23,11 +27,41 @@
         <action
             android:id="@+id/navigateToStudentDetailedFragment"
             app:destination="@id/studentDetailedFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
             app:popUpTo="@id/studentsFragment" />
     </fragment>
     <fragment
         android:id="@+id/studentDetailedFragment"
         android:name="com.example.teacher_assistant.StudentDetailedFragment"
         android:label="Informacje o studencie"
-        tools:layout="@layout/fragment_student_detailed" />
+        tools:layout="@layout/fragment_student_detailed" >
+        <argument
+            android:name="studentId"
+            app:argType="integer"
+            android:defaultValue="0" />
+    </fragment>
+    <fragment
+        android:id="@+id/lessonDetailedFragment"
+        android:name="com.example.teacher_assistant.LessonDetailedFragment"
+        android:label="Informacje o zajęciach"
+        tools:layout="@layout/fragment_lesson_detailed" >
+        <argument
+            android:name="lessonId"
+            app:argType="integer"
+            android:defaultValue="0" />
+        <action
+            android:id="@+id/navigateToAddStudentsToLessonFragment"
+            app:destination="@id/addStudentsToLessonFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addStudentsToLessonFragment"
+        android:name="com.example.teacher_assistant.AddStudentsToLessonFragment"
+        android:label="Wybierz studentów"
+        tools:layout="@layout/fragment_add_students_to_lesson" >
+        <argument
+            android:name="lessonId"
+            app:argType="integer"
+            android:defaultValue="0" />
+    </fragment>
 </navigation>

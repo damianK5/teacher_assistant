@@ -47,7 +47,8 @@ class StudentsFragment : Fragment(R.layout.fragment_students) {
             }
 
             view.setOnClickListener {
-                Navigation.findNavController(view).navigate(R.id.navigateToStudentDetailedFragment)
+                val action = StudentsFragmentDirections.navigateToStudentDetailedFragment(item.idStudent)
+                Navigation.findNavController(view).navigate(action)
             }
 
             val buttonEdit = view.findViewById<Button>(R.id.btn_edit)

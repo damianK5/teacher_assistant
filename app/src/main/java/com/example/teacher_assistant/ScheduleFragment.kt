@@ -35,13 +35,6 @@ class ScheduleFragment : Fragment() {
     private lateinit var lessons: List<Lesson>
     private lateinit var tableLayout: TableLayout
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-
-        }
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -173,10 +166,6 @@ class ScheduleFragment : Fragment() {
                                         Toast.LENGTH_SHORT
                                     ).show()
                                 }
-
-                                //val newRow = layoutInflater.inflate(R.layout.table_row, tableLayout, false) as TableRow
-                                //newRow.findViewById<TextView>(R.id.hourTextView).text = "$lessonNumber. $startHour - $endHour"
-                                //tableLayout.addView(newRow)
                             }
                             setNegativeButton("Anuluj") { _, _ -> }
                             setView(dialogLayout)

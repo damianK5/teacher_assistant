@@ -20,6 +20,7 @@ import android.widget.Toast
 import androidx.core.view.MenuProvider
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.Navigation
 import com.example.teacher_assistant.database.Lesson
 import com.example.teacher_assistant.database.AppDatabase
 import com.example.teacher_assistant.database.Student
@@ -42,6 +43,11 @@ class LessonsFragment : Fragment(R.layout.fragment_lessons) {
             val item = getItem(index) as Lesson
 
             view.findViewById<TextView>(R.id.listName).text = item.groupName
+
+            view.setOnClickListener {
+                val action = LessonsFragmentDirections.navigateToLessonDetailedFragment(item.idLesson)
+                Navigation.findNavController(view).navigate(action)
+            }
 
             return view
         }
@@ -142,14 +148,5 @@ class LessonsFragment : Fragment(R.layout.fragment_lessons) {
             setView(dialogLayout)
             show()
         }
-    }
-
-    companion object {
-
-        @JvmStatic
-        fun newInstance() =
-            LessonsFragment().apply {
-                arguments = Bundle().apply { }
-            }
     }
 }
