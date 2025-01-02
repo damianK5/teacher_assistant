@@ -280,8 +280,6 @@ class ScheduleFragment : Fragment() {
                 id: Long
             ) {
                 selectedDay = parent.getItemAtPosition(position).toString()
-                Toast.makeText(requireContext(), "Selected: $selectedDay", Toast.LENGTH_SHORT)
-                    .show()
             }
             override fun onNothingSelected(parent: AdapterView<*>?) {
                 isEveryValueSelected = false
@@ -306,8 +304,6 @@ class ScheduleFragment : Fragment() {
                 id: Long
             ) {
                 selectedLessonNumber = lessonNumbers[position]
-                Toast.makeText(requireContext(), "Selected: $selectedLessonNumber", Toast.LENGTH_SHORT)
-                    .show()
             }
             override fun onNothingSelected(parent: AdapterView<*>?) {
                 isEveryValueSelected = false
@@ -332,8 +328,6 @@ class ScheduleFragment : Fragment() {
                 id: Long
             ) {
                 selectedLessonId = lessons[position].idLesson
-                Toast.makeText(requireContext(), "Selected: $selectedLessonId", Toast.LENGTH_SHORT)
-                    .show()
             }
             override fun onNothingSelected(parent: AdapterView<*>?) {
                 isEveryValueSelected = false
@@ -355,7 +349,11 @@ class ScheduleFragment : Fragment() {
                     else -> -1
                 }
 
-                if (isEveryValueSelected) {
+                if (isEveryValueSelected
+                    && selectedDay != ""
+                    && selectedLessonNumber != -1
+                    && selectedLessonId != -1) {
+
                     val lessonInSchedule = LessonInSchedule(
                         idLessonInSchedule = 0,
                         idLesson = selectedLessonId,

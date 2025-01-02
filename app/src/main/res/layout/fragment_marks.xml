@@ -4,21 +4,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".AddStudentsToLessonFragment">
-
-    <Button
-        android:id="@+id/button_save_students_to_lesson"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="15dp"
-        android:layout_marginVertical="10dp"
-        android:text="Zapisz zmiany"/>
+    tools:context=".MarksFragment">
 
     <ListView
-        android:id="@+id/add_students_to_lesson_listview"
+        android:id="@+id/listview_marks"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="8dp"
+        android:layout_marginTop="8dp"
         android:divider="@android:color/transparent"
         android:dividerHeight="5.0sp" />
 

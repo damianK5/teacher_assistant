@@ -11,8 +11,9 @@ import androidx.room.RoomDatabase
         Lesson::class,
         CustomTableRow::class,
         LessonInSchedule::class,
-        StudentLesson::class],
-    version = 8)
+        StudentLesson::class,
+        Mark::class],
+    version = 10)
 
 abstract class AppDatabase : RoomDatabase() {
 
@@ -21,6 +22,7 @@ abstract class AppDatabase : RoomDatabase() {
     abstract fun customTableRowDao(): CustomTableRowDao
     abstract fun lessonInScheduleDao(): LessonInScheduleDao
     abstract fun studentLessonDao(): StudentLessonDao
+    abstract fun markDao(): MarkDao
 
     companion object {
         @Volatile

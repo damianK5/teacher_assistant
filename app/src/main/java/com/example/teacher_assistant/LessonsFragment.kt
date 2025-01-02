@@ -12,6 +12,7 @@ import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.BaseAdapter
+import android.widget.Button
 import android.widget.EditText
 import android.widget.ListView
 import android.widget.Spinner
@@ -49,6 +50,35 @@ class LessonsFragment : Fragment(R.layout.fragment_lessons) {
                 Navigation.findNavController(view).navigate(action)
             }
 
+            val buttonEdit = view.findViewById<Button>(R.id.btn_edit)
+            val buttonDelete = view.findViewById<Button>(R.id.btn_delete)
+
+            buttonEdit.setOnClickListener {
+                addLesson(true, item.idLesson, item.groupName, item.groupNumber, item.roomNumber)
+            }
+
+            buttonDelete.setOnClickListener {
+                val builder = AlertDialog.Builder(requireContext())
+
+                with(builder) {
+                    setTitle("Czy chcesz usunąć?")
+                    setPositiveButton("Tak") { _, _ ->
+                        lifecycleScope.launch {
+                            val db = AppDatabase.getInstance(requireContext())
+                            db.lessonDao().delete(item)
+                            refreshList()
+                        }
+                        Toast.makeText(
+                            requireContext(),
+                            "Zajęcia usunięte",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
+                    setNegativeButton("Nie", null)
+                    show()
+                }
+            }
+
             return view
         }
 
@@ -75,7 +105,7 @@ class LessonsFragment : Fragment(R.layout.fragment_lessons) {
                 override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
                     return when (menuItem.itemId) {
                         R.id.action_student_add -> {
-                            addLesson(false, null)
+                            addLesson(false, null, null, null, null)
                             true
                         }
                         else -> false
@@ -94,7 +124,7 @@ class LessonsFragment : Fragment(R.layout.fragment_lessons) {
         }
     }
 
-    private fun addLesson(editMode: Boolean, lessonId: Int?) {
+    private fun addLesson(editMode: Boolean, lessonId: Int?, groupNam: String?, groupNum: String?, roomNum: String?) {
         val builder = AlertDialog.Builder(requireContext())
         val dialogLayout = layoutInflater.inflate(R.layout.dialog_lesson_add, null)
 
@@ -103,9 +133,9 @@ class LessonsFragment : Fragment(R.layout.fragment_lessons) {
         val editTextRoomNumber = dialogLayout.findViewById<EditText>(R.id.editTextRoomNumber)
 
         if (editMode) {
-            //editTextGroupName.setText()
-            //editTextGroupNumber.setText()
-            //editTextRoomNumber.setText()
+            editTextGroupName.setText(groupNam)
+            editTextGroupNumber.setText(groupNum)
+            editTextRoomNumber.setText(roomNum)
         }
 
         with(builder) {

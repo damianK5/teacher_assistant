@@ -54,6 +54,11 @@ class LessonDetailedFragment : Fragment() {
                 }
             }
 
+            view.setOnClickListener {
+                val action = LessonDetailedFragmentDirections.navigateToMarksFragment(item.idStudent, item.idLesson)
+                Navigation.findNavController(view).navigate(action)
+            }
+
             return view
         }
 
@@ -64,31 +69,7 @@ class LessonDetailedFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_lesson_detailed, container, false)
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-        lifecycleScope.launch {
-            val lessonId = args.lessonId
-            lesson = AppDatabase
-                .getInstance(requireContext())
-                .lessonDao()
-                .getById(lessonId)!!
-
-            view.findViewById<TextView>(R.id.group_name).text = lesson.groupName
-            view.findViewById<TextView>(R.id.group_number).text = lesson.groupNumber
-            view.findViewById<TextView>(R.id.room_number).text = lesson.roomNumber
-
-            studentsLesson = AppDatabase
-                .getInstance(requireContext())
-                .studentLessonDao()
-                .getByLessonId(lesson.idLesson)
-
-            val studentsListView = view.findViewById<ListView>(R.id.listview_students_in_lesson)
-            studentsListView.adapter = adapter
-        }
+        val view = inflater.inflate(R.layout.fragment_lesson_detailed, container, false)
 
         // set the appbar
         requireActivity().addMenuProvider(object : MenuProvider {
@@ -108,6 +89,33 @@ class LessonDetailedFragment : Fragment() {
                 }
             }
         }, viewLifecycleOwner, Lifecycle.State.RESUMED)
+
+        return view
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        lifecycleScope.launch {
+            val lessonId = args.lessonId
+
+            lesson = AppDatabase
+                .getInstance(requireContext())
+                .lessonDao()
+                .getById(lessonId)!!
+
+            view.findViewById<TextView>(R.id.group_name).text = lesson.groupName
+            view.findViewById<TextView>(R.id.group_number).text = lesson.groupNumber
+            view.findViewById<TextView>(R.id.room_number).text = lesson.roomNumber
+
+            studentsLesson = AppDatabase
+                .getInstance(requireContext())
+                .studentLessonDao()
+                .getByLessonId(lesson.idLesson)
+
+            val studentsListView = view.findViewById<ListView>(R.id.listview_students_in_lesson)
+            studentsListView.adapter = adapter
+        }
     }
 
 }

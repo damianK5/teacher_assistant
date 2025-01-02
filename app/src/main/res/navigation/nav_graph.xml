@@ -40,6 +40,9 @@
             android:name="studentId"
             app:argType="integer"
             android:defaultValue="0" />
+        <action
+            android:id="@+id/action_studentDetailedFragment_to_marksFragment"
+            app:destination="@id/marksFragment" />
     </fragment>
     <fragment
         android:id="@+id/lessonDetailedFragment"
@@ -53,12 +56,29 @@
         <action
             android:id="@+id/navigateToAddStudentsToLessonFragment"
             app:destination="@id/addStudentsToLessonFragment" />
+        <action
+            android:id="@+id/navigateToMarksFragment"
+            app:destination="@id/marksFragment" />
     </fragment>
     <fragment
         android:id="@+id/addStudentsToLessonFragment"
         android:name="com.example.teacher_assistant.AddStudentsToLessonFragment"
         android:label="Wybierz studentów"
         tools:layout="@layout/fragment_add_students_to_lesson" >
+        <argument
+            android:name="lessonId"
+            app:argType="integer"
+            android:defaultValue="0" />
+    </fragment>
+    <fragment
+        android:id="@+id/marksFragment"
+        android:name="com.example.teacher_assistant.MarksFragment"
+        android:label="Oceny studenta"
+        tools:layout="@layout/fragment_marks" >
+        <argument
+            android:name="studentId"
+            app:argType="integer"
+            android:defaultValue="0" />
         <argument
             android:name="lessonId"
             app:argType="integer"
