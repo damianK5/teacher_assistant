@@ -13,4 +13,8 @@
         android:id="@+id/studentsFragment"
         android:title="Studenci"
         android:icon="@drawable/baseline_badge_24" />
+    <item
+        android:id="@+id/dataFragment"
+        android:title="Usuń dane"
+        android:icon="@drawable/baseline_delete_forever_24" />
 </menu>

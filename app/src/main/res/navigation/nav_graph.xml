@@ -84,4 +84,9 @@
             app:argType="integer"
             android:defaultValue="0" />
     </fragment>
+    <fragment
+        android:id="@+id/dataFragment"
+        android:name="com.example.teacher_assistant.DataFragment"
+        android:label="Usuwanie danych"
+        tools:layout="@layout/fragment_data" />
 </navigation>

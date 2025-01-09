@@ -32,4 +32,7 @@ interface StudentLessonDao {
 
     @Query("SELECT * FROM studentLesson WHERE idStudent = :idStudent")
     suspend fun getByStudentId(idStudent: Int): List<StudentLesson>
+
+    @Query("delete from sqlite_sequence where name='studentLesson'")
+    suspend fun resetId()
 }

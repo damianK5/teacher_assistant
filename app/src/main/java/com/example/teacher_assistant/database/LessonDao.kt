@@ -26,4 +26,7 @@ interface LessonDao {
 
     @Query("DELETE FROM lesson")
     suspend fun deleteAll()
+
+    @Query("delete from sqlite_sequence where name='lesson'")
+    suspend fun resetId()
 }

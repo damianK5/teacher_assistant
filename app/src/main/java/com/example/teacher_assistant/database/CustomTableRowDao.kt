@@ -26,4 +26,7 @@ interface CustomTableRowDao {
 
     @Query("DELETE FROM customTableRow")
     suspend fun deleteAll()
+
+    @Query("delete from sqlite_sequence where name='customTableRow'")
+    suspend fun resetId()
 }

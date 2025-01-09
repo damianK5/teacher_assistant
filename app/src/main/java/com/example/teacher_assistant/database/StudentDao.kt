@@ -26,4 +26,7 @@ interface StudentDao {
 
     @Query("DELETE FROM student")
     suspend fun deleteAll()
+
+    @Query("delete from sqlite_sequence where name='student'")
+    suspend fun resetId()
 }

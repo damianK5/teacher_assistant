@@ -35,4 +35,7 @@ interface MarkDao {
 
     @Query("SELECT * FROM mark WHERE idStudent = :idStudent AND idLesson = :idLesson")
     suspend fun getByStudentAndLessonId(idStudent: Int, idLesson: Int): List<Mark>
+
+    @Query("delete from sqlite_sequence where name='mark'")
+    suspend fun resetId()
 }

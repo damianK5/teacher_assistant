@@ -134,7 +134,7 @@ class ScheduleFragment : Fragment() {
                         with(builder) {
                             setTitle("Podaj godziny")
                             setPositiveButton("Dodaj") { _, _ ->
-                                if (editTextLessonNumber.toString().isNotBlank()) {
+                                if (editTextLessonNumber.text.toString().isNotBlank()) {
                                     val lessonNumber = editTextLessonNumber.text.toString().toInt()
                                     val startHour = textViewStartHour.text.toString()
                                     val endHour = textViewEndHour.text.toString()

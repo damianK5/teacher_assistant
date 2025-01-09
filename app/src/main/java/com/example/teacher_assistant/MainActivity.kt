@@ -33,7 +33,8 @@ class MainActivity : AppCompatActivity() {
         val appBarConfiguration = AppBarConfiguration(setOf(
             R.id.scheduleFragment,
             R.id.lessonsFragment,
-            R.id.studentsFragment
+            R.id.studentsFragment,
+            R.id.dataFragment
         ))
         setupActionBarWithNavController(navController, appBarConfiguration)
 
@@ -57,6 +58,12 @@ class MainActivity : AppCompatActivity() {
                 R.id.studentsFragment -> {
                     navController.navigate(R.id.studentsFragment, null,
                         NavOptions.Builder().setPopUpTo(R.id.studentsFragment, inclusive = true).build()
+                    )
+                    true
+                }
+                R.id.dataFragment -> {
+                    navController.navigate(R.id.dataFragment, null,
+                        NavOptions.Builder().setPopUpTo(R.id.dataFragment, inclusive = true).build()
                     )
                     true
                 }
